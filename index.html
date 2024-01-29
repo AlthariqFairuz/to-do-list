@@ -3,20 +3,36 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" href="https://www.freeiconspng.com/uploads/to-do-list-icon-buy-this-icon-for--0-48-1.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <title> To-do List </title>
 </head>
 
-<body class="bg-background bg-custom-radial bg-custom-size bg-custom-position opacity-100 " data-aos="fade-up" data-aos-duration="1000">
+<body class="bg-background bg-custom-radial bg-custom-size bg-custom-position opacity-100 " data-aos="fade-up"
+  data-aos-duration="1000">
+  <span class='flex flex-wrap justify-center mt-8 font-bold w-full font-comic-neue text-white lg:text-3xl'> AmbatuTask
+  </span>
+  <p class="flex justify-center text-white text-xl p-3" id="task"></p>
   <div id="root"></div>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script id="aos">
     AOS.init();
   </script>
   <script type="module" src="/src/main.tsx"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://assets.codepen.io/16327/ScrambleTextPlugin3.min.js"></script>
+  <script id="gsap">
+    gsap.registerPlugin(ScrambleTextPlugin);
+    gsap.to("#task", {
+      duration: 3.0,
+      scrambleText: {
+        text: "A new way to manage your tasks",
+        speed: 1
+      }
+    });
+  </script>
 </body>
 
 </html>

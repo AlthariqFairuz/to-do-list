@@ -50,40 +50,39 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
     }, [edit])
 
     return (
-        <div className='flex justify-center w-full' data-aos='fade-up' data-aos-duration='500' data-aos-offset='200' data-aos-delay="0">
-            <form className='todos-single w-1/2 flex justify-center items-center mb-4 group' onSubmit={(e) => handleEdit(e, todo.id)}>
-                {
-                    edit ? (
-                        <input ref={inputRef} onBlur={() => {
-                            handleEdit(undefined, todo.id);
-                            setEdit(false);
-                        }} className='p-3 focus:outline-none focus:shadow-custom w-full flex justify-center items-center rounded-lg bg-todos transition duration-300' value={editTodo} onChange={(e) => setEditTodo(e.target.value)} />
-                    ) : (
-                        todo.isCompleted ? (
-                            <span onClick={() => {
-                                if (!edit && !todo.isCompleted) {
-                                    setEdit(!edit);
-                                }
-                            }} className='p-3 group-hover:scale-105 w-full flex justify-center items-center rounded-lg bg-todos line-through duration-300 transition h-12 truncate' >
-                                {todo.todo}
-                            </span>
+        <div className='flex justify-center items-center w-full' data-aos='fade-up' data-aos-duration='500' data-aos-offset='200' data-aos-delay="0">
+            <form className='w-full flex justify-center items-center mb-4 group' onSubmit={(e) => handleEdit(e, todo.id)}>
+                <div className='flex justify-center items-center w-3/4 p-3 mx-1 sm:mx-4'>
+                    {
+                        edit ? (
+                            <input ref={inputRef} onBlur={() => {
+                                handleEdit(undefined, todo.id);
+                                setEdit(false);
+                            }} className='p-3 focus:outline-none focus:shadow-custom w-full flex justify-center items-center rounded-lg bg-todos transition duration-300' value={editTodo} onChange={(e) => setEditTodo(e.target.value)} />
                         ) : (
-                            <span onClick={() => {
-                                if (!edit && !todo.isCompleted) {
-                                    setEdit(!edit);
-                                }
-                            }} className='p-3 group-hover:scale-105 w-full flex justify-center items-center rounded-lg bg-todos h-12 duration-300 transition truncate' >
-                                {todo.todo}
-                            </span>
+                            todo.isCompleted ? (
+                                <span onClick={() => {
+                                    if (!edit && !todo.isCompleted) {
+                                        setEdit(!edit);
+                                    }
+                                }} className='p-3 group-hover:scale-105 w-full flex justify-center items-center rounded-lg bg-todos line-through duration-300 transition h-12 truncate' >
+                                    {todo.todo}
+                                </span>
+                            ) : (
+                                <span onClick={() => {
+                                    if (!edit && !todo.isCompleted) {
+                                        setEdit(!edit);
+                                    }
+                                }} className='p-3 group-hover:scale-105 w-full flex justify-center items-center rounded-lg bg-todos h-12 duration-300 transition truncate' >
+                                    {todo.todo}
+                                </span>
+                            )
                         )
-                    )
-                }
-
-                <div className='flex static p-6  '>
+                    }
+                </div>
+                <div className='flex justify-center items-center p-3 mx-0 sm:mx-4 sm:p-6'>
                     <span className='icon hover:text-white group-hover:scale-125 transition duration-300' onClick={() => {
-                        if (!edit && !todo.isCompleted) {
-                            setEdit(!edit);
-                        }
+                        if (!todo.isCompleted) { handleEdit(undefined, todo.id); setEdit(!edit); }
                     }}> <FaEdit /></span>
                     <span className='icon hover:text-white group-hover:scale-125 transition duration-300' onClick={() => handleDelete(todo.id)}><MdDelete /></span>
                     <span className='icon hover:text-white group-hover:scale-125 transition duration-300' onClick={() => handleDone(todo.id)}><MdDoneAll /></span>
